@@ -13,9 +13,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Debugging output to verify arguments
-    printf("Argument 1: %s\n", argv[1]);
-    printf("Argument 2: %s\n", argv[2]);
+  
 
     // Determine the operation based on the parameter
     if (strcmp(argv[1], "-C") == 0) {
