@@ -7,7 +7,43 @@ int count_characters(const char* filename);
 int count_words(const char* filename);
 
 int main(int argc, char* argv[]) {
-    
+    // Check if the correct number of arguments are provided
+    if (argc != 3) {
+        fprintf(stderr, "Usage: %s [-C|-W] [input_file_name]\n", argv[0]);
+        return 1;
+    }
+
+    // Debugging output to verify arguments
+    printf("Argument 1: %s\n", argv[1]);
+    printf("Argument 2: %s\n", argv[2]);
+
+    // Determine the operation based on the parameter
+    if (strcmp(argv[1], "-C") == 0) {
+        int char_count = count_characters(argv[2]);
+        if (char_count >= 0) {
+            printf("字符数：%d\n", char_count);
+        }
+        else {
+            fprintf(stderr, "Error reading file: %s\n", argv[2]);
+            return 1;
+        }
+    }
+    else if (strcmp(argv[1], "-W") == 0) {
+        int word_count = count_words(argv[2]);
+        if (word_count >= 0) {
+            printf("单词数：%d\n", word_count);
+        }
+        else {
+            fprintf(stderr, "Error reading file: %s\n", argv[2]);
+            return 1;
+        }
+    }
+    else {
+        fprintf(stderr, "Invalid parameter. Use -C for character count or -W for word count.\n");
+        return 1;
+    }
+
+    return 0;
 }
 
 // Function to count characters in a file
