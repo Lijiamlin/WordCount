@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-// Function prototypes
+// 函数名
 int count_characters(const char* filename);
 int count_words(const char* filename);
 
 int main(int argc, char* argv[]) {
-    // Check if the correct number of arguments are provided
+    // 检查是否提供了正确数量的参数
     if (argc != 3) {
         fprintf(stderr, "Usage: %s [-C|-W] [input_file_name]\n", argv[0]);
         return 1;
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 
   
 
-    // Determine the operation based on the parameter
+    // 根据参数确定操作
     if (strcmp(argv[1], "-C") == 0) {
         int char_count = count_characters(argv[2]);
         if (char_count >= 0) {
@@ -44,11 +44,11 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-// Function to count characters in a file
+// 统计文件中字符数
 int count_characters(const char* filename) {
     FILE* file;
     if (fopen_s(&file, filename, "r") != 0) {
-        return -1; // Return -1 if the file cannot be opened
+        return -1; // 若文件无法被打开则返回-1
     }
 
     int char_count = 0;
@@ -61,11 +61,11 @@ int count_characters(const char* filename) {
     return char_count;
 }
 
-// Function to count words in a file
+// 统计单词数
 int count_words(const char* filename) {
     FILE* file;
     if (fopen_s(&file, filename, "r") != 0) {
-        return -1; // Return -1 if the file cannot be opened
+        return -1; // 若文件无法被打开则返回-1
     }
 
     int word_count = 0;
@@ -83,7 +83,7 @@ int count_words(const char* filename) {
         }
     }
 
-    // If the last character was part of a word, count it as a word
+    // 如果最后一个字符是单词的一部分，则将其计为单词
     if (in_word) {
         word_count++;
     }
